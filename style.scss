@@ -1,0 +1,73 @@
+
+@function double-h1-font-size($size) {
+  @return $size * 2;
+}
+
+h1 {
+  font-size: double-h1-font-size(24px); 
+}
+
+
+@function complement-color($color) {
+  $complement: change-color($color, $alpha: 0); 
+  @each $channel, $value in zip(red($color), green($color), blue($color)) {
+    $complement: adjust-color($complement, $channel: $channel, $amount: -1 * $value); 
+  }
+  @return $complement;
+}
+
+
+@function contrast-color($bg-color, $light-color: white, $dark-color: black) {
+  @if (lightness($bg-color) > 50%) {
+    @return $dark-color;
+  } @else {
+    @return $light-color;
+  }
+}
+
+
+@mixin button-radius {
+  border-radius: 5px;
+}
+button {
+  @include button-radius; 
+}
+
+
+@mixin heading-colors($color) {
+  h1, h2, h3, h4, h5, h6 {
+    color: $color;
+    background-color: lighten($color, 30%);
+  }
+} 
+@include heading-colors(blue);
+
+$primary-color: #007bff; 
+p {
+  color: $primary-color;
+}
+
+
+$stol-color: blue; 
+h1 {
+    color: $stol-color;
+
+  }
+
+
+
+  @mixin heading-color($color)
+
+  p{
+    color: $color
+    background-color: blue($color: #000000);
+  }
+    
+
+    
+  
+
+
+
+
+
